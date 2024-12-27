@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Panel</title>
+    <style>
+        /* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    line-height: 1.5;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #1e88e5;
+}
+
+h2 {
+    margin: 15px 0;
+    color: #3949ab;
+}
+
+/* Form Elements */
+label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+select {
+    width: 10%;
+    padding: 8px 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+select:focus {
+    border-color: #1e88e5;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #3949ab;
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e3f2fd;
+}
+
+/* Buttons */
+button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+button:hover {
+    transform: translateY(-3px);
+}
+
+button[onclick*="promoteOrDemoteAdmin"] {
+    background-color: #4caf50;
+}
+
+button[onclick*="promoteOrDemoteAdmin"]:hover {
+    background-color: #388e3c;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    margin: 50px 0;
+    font-size: 1.2rem;
+    color: #757575;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #3949ab;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+/* Inline layout for label and select */
+label[for="userType"], #userType {
+    display: inline-block;
+}
+
+label[for="userType"] {
+    margin-right: 10px; /* Adjust spacing between label and select */
+}
+
+footer p {
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    table {
+        font-size: 0.9rem;
+    }
+
+    select, button {
+        font-size: 0.8rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Include Header -->
+    <%- include('partials/header')  %>
+  
+    <h1>Super Admin Panel</h1>
+
+    <!-- Select Box for Admins or Students -->
+    <label for="userType">Choose User Type:
+    <select id="userType" name="userType" onchange="handleUserTypeChange()">
+        <option value="">Select</option>
+        <option value="admins">Admins</option>
+        <option value="students">Students</option>
+    </select>
+</label>
+
+    <!-- Admins Section -->
+    <div id="adminsSection" style="display: none;">
+        <h2>Admins</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="adminsTable">
+                <!-- Admin data will be inserted here dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Students Section -->
+    <div id="studentsSection" style="display: none;">
+        <h2>Students</h2>
+        <label for="classSelect">Choose Class:</label>
+        <select id="classSelect" name="classSelect" onchange="fetchStudentsByClass()">
+            <option value="">Select Class</option>
+            <% classes.forEach(classItem => { %>
+                <option value="<%= classItem %>"><%= classItem %></option>
+            <% }); %>
+        </select>
+
+        <table border="1" id="studentsTable" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Class</th>
+                    <th>Roll Number</th>
+                </tr>
+            </thead>
+            <tbody id="studentsTableBody">
+                <!-- Student data will be inserted here dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Handle user type change
+        async function handleUserTypeChange() {
+            const userType = document.getElementById('userType').value;
+            if (userType === 'admins') {
+                document.getElementById('adminsSection').style.display = 'block';
+                document.getElementById('studentsSection').style.display = 'none';
+                await fetchAdmins(); // Fetch admins when "admins" option is selected
+            } else if (userType === 'students') {
+                document.getElementById('adminsSection').style.display = 'none';
+                document.getElementById('studentsSection').style.display = 'block';
+            } else {
+                document.getElementById('adminsSection').style.display = 'none';
+                document.getElementById('studentsSection').style.display = 'none';
+            }
+        }
+
+        // Fetch admins from the server
+        async function fetchAdmins() {
+            const response = await fetch('/super-admin/admins');
+            const admins = await response.json();
+            const tbody = document.getElementById('adminsTable');
+            tbody.innerHTML = ''; // Clear existing rows
+
+            admins.forEach(admin => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${admin.username}</td>
+                    <td>${admin.email}</td>
+                    <td>${admin.role}</td>
+                    <td>
+                        <button onclick="promoteOrDemoteAdmin('${admin.id}', '${admin.role}')">
+                            Promote/Demote Vice Admin
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Fetch students by class
+        async function fetchStudentsByClass() {
+            const classValue = document.getElementById('classSelect').value;
+            if (classValue) {
+                const response = await fetch(`/super-admin/students?class=${classValue}`);
+                const students = await response.json();
+                const tbody = document.getElementById('studentsTableBody');
+                tbody.innerHTML = ''; // Clear existing rows
+
+                students.forEach(student => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${student.username}</td>
+                        <td>${student.email}</td>
+                        <td>${student.class}</td>
+                        <td>${student.roll_number}</td>                        
+                    `;
+                    tbody.appendChild(row);
+                });
+
+                document.getElementById('studentsTable').style.display = 'block';
+            }
+        }
+
+        // Promote or demote admin
+        async function promoteOrDemoteAdmin(adminId, currentRole) {
+            const action = currentRole === 'vice_admin' ? 'Demote' : 'Promote';
+            console.log(action);
+            const response = await fetch('/super-admin/promote-demote-admin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ adminId, action }),
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                console.log(action);
+                alert(`Admin ${action}d successfully!`);
+                await fetchAdmins(); // Refresh the admin list
+            } else {
+                alert(`Error: ${result.error}`);
+            }
+        }
+    </script>
+
+    <!-- Include Footer from partials folder -->
+  <%- include('partials/footer') %>
+</body>
+</html>

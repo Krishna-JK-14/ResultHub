@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Requests</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #1e88e5;
+        }
+
+        .request-card {
+            background: #fff;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+
+        .request-card h2 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #3949ab;
+        }
+
+        .request-card p {
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .request-card p strong {
+            color: #444;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, transform 0.2s;
+        }
+
+        button[name="action"][value="accept"] {
+            background-color: #4caf50;
+        }
+
+        button[name="action"][value="accept"]:hover {
+            background-color: #388e3c;
+            transform: translateY(-3px);
+        }
+
+        button[name="action"][value="reject"] {
+            background-color: #e53935;
+        }
+
+        button[name="action"][value="reject"]:hover {
+            background-color: #c62828;
+            transform: translateY(-3px);
+        }
+
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 30px auto;
+            max-width: 600px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 1.1rem;
+            color: #757575;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #333333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 0.9rem;
+        }
+
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .request-card {
+                padding: 15px;
+                max-width: 90%;
+            }
+
+            button {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Include Header -->
+    <%- include('partials/header') %>
+
+    <main>
+        <h1>Registration Requests</h1>
+
+        <% if (requests.length > 0) { %>
+            <% requests.forEach(request => { %>
+                <div class="request-card">
+                    <h2>Request Details</h2>
+                    <p><strong>Role:</strong> <%= request.role === 'admin' ? 'Admin' : 'Student' %></p>
+                    <p><strong>Username:</strong> <%= request.username %></p>
+                    <p><strong>Email:</strong> <%= request.email %></p>
+                    <% if (request.role === 'student') { %>
+                        <p><strong>Class:</strong> <%= request.class %></p>
+                        <p><strong>Roll Number:</strong> <%= request.roll_number %></p>
+                    <% } %>
+                    <% if (request.school_id) { %>
+                        <p><strong>School ID:</strong> <%= request.school_id %></p>
+                    <% } %>
+                    <p><strong>Status:</strong> <%= request.status %></p>
+
+                    <div class="button-container">
+                        <form action="/handle-request" method="POST">
+                            <input type="hidden" name="requestId" value="<%= request.id %>">
+                            <input type="hidden" name="role" value="<%= request.role %>">
+                            <button type="submit" name="action" value="accept">Approve</button>
+                            <button type="submit" name="action" value="reject">Reject</button>
+                        </form>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p class="empty-state">No registration requests are available.</p>
+        <% } %>
+    </main>
+
+    <%- include('partials/footer')%>
+</body>
+</html>

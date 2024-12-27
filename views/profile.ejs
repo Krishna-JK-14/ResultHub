@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Profile</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>/* General Page Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9; /* Light background for better readability */
+  color: #333; /* Dark text for good contrast */
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #eaf7ff; /* White background for content area */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+}
+
+/* Header and Footer (Assuming these are already styled globally) */
+header, footer {
+  background: #0078d4; /* Consistent brand color */
+  color: #ffffff;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* Page Heading */
+h1 {
+  color: #0078d4; /* Match brand color */
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Profile Info Section */
+.profile-info {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  background: #f9f9f9; /* Light gray for better separation */
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-weight: bold;
+  color: #555;
+}
+
+.info-value {
+  color: #0078d4;
+  font-weight: 500;
+}
+
+/* Buttons */
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #fff;
+  background: #0078d4;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background: #005bb5; /* Slightly darker on hover */
+}
+
+.edit-btn {
+  background: #f39c12; /* Orange for edit action */
+}
+
+.edit-btn:hover {
+  background: #e67e22; /* Darker orange */
+}
+
+.save-btn {
+  background: #27ae60; /* Green for save action */
+}
+
+.save-btn:hover {
+  background: #2ecc71; /* Brighter green */
+}
+
+.reset-btn {
+  background: #e74c3c; /* Red for reset password */
+}
+
+.reset-btn:hover {
+  background: #c0392b; /* Darker red */
+}
+
+/* Reset Password Section */
+.reset-password {
+  margin-top: 30px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #fcfcfc; /* Subtle background difference */
+}
+
+.reset-password h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.reset-password label {
+  display: block;
+  margin: 5px 0;
+  font-weight: bold;
+  color: #555;
+}
+
+.reset-password input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 600px) {
+  .info-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .info-label, .info-value {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+</style>
+  
+</head>
+<body>
+    <!-- Include Header -->
+    <%- include('partials/header')  %>
+  
+  <div class="container">
+    <h1>Student Profile</h1>
+    <div class="profile-info" id="profileInfo">
+      <div class="info-row">
+        <span class="info-label">Username:</span>
+        <span class="info-value" id="username"><%= student.username %></span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Email:</span>
+        <span class="info-value" id="email"><%= student.email %></span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Class:</span>
+        <span class="info-value" id="class"><%= student.class %></span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Roll Number:</span>
+        <span class="info-value" id="rollNumber"><%= student.roll_number %></span>
+      </div>
+    </div>
+
+    <!-- Hidden input field to store studentId -->
+    <input type="hidden" id="studentId" value="<%= student.id %>">
+
+    <button class="edit-btn" id="editButton" onclick="enableEditing()">Edit</button>
+    <button class="save-btn" id="saveButton" style="display: none;" onclick="saveChanges()">Save</button>
+
+    <div class="reset-password">
+      <h3>Reset Password</h3>
+      <label for="newPassword">New Password:</label>
+      <input type="password" id="newPassword" placeholder="Enter new password">
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" placeholder="Confirm new password">
+      <button class="reset-btn" onclick="resetPassword()">Reset Password</button>
+    </div>
+  </div>
+
+  <script>
+    function enableEditing() {
+      const fields = ['username', 'email', 'class', 'rollNumber'];
+      fields.forEach(field => {
+        const span = document.getElementById(field);
+        const value = span.innerText;
+        span.innerHTML = `<input type="text" id="input-${field}" value="${value}">`;
+      });
+      document.getElementById('editButton').style.display = 'none';
+      document.getElementById('saveButton').style.display = 'inline-block';
+    }
+
+    async function saveChanges() {
+      const fields = ['username', 'email', 'class', 'rollNumber'];
+      const updatedData = {};
+      fields.forEach(field => {
+        const input = document.getElementById(`input-${field}`);
+        updatedData[field] = input.value;
+      });
+      updatedData.studentId = document.getElementById('studentId').value;
+
+      try {
+        const response = await fetch('/update-profile', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedData),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          alert('Profile updated successfully!');
+          location.reload();  // Reload the page to reflect updated data
+        } else {
+          alert('Error updating profile!');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Error updating profileee!');
+      }
+    }
+
+    async function resetPassword() {
+      const newPassword = document.getElementById('newPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (newPassword !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+      try {
+        const response = await fetch('/reset-password', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ password: newPassword }),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          alert('Password reset successfully!');
+          location.reload();  // Reload the page to reflect updated data
+        } else {
+          alert('Error resetting password!!');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Error resetting password!!');
+      }
+    }
+  </script>
+
+  <!-- Include Footer from partials folder -->
+  <%- include('partials/footer') %>
+</body>
+</html>

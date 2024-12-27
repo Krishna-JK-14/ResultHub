@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResultHub - Home</title>
+    <style>
+      /* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background-color: #0056b3;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+header nav ul li {
+  margin: 0 1rem;
+}
+
+header nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+header nav ul li a:hover {
+  text-decoration: underline;
+}
+
+/* Main Content */
+main {
+  padding: 2rem;
+}
+
+.introduction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.introduction .content {
+  max-width: 50%;
+}
+
+.introduction .image img {
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* How It Works */
+#how-it-works {
+  background-color: #f9f9f9;
+  padding: 2rem;
+  border-top: 1px solid #ddd;
+}
+
+#how-it-works h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+}
+
+.step {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  width: 30%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.step h3 {
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+footer {
+  background-color: #0056b3;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+footer ul li {
+  display: inline;
+  margin: 0 0.5rem;
+}
+
+footer ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+footer ul li a:hover {
+  text-decoration: underline;
+}
+
+    </style>
+  </head>
+<body>
+    <header>
+        <div class="logo">ResultHub</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="introduction">
+            <div class="content">
+                <h1 style="font-size: xx-large;">Welcome to ResultHub</h1>
+                <p>ResultHub is your one-stop solution for managing and tracking academic results. 
+                    Designed for both students and admins, it provides a seamless platform for 
+                    uploading, viewing, and analyzing performance data. 
+                    Whether you're a teacher managing class results or a student tracking your progress, 
+                    ResultHub simplifies the process with user-friendly tools and a secure interface.</p>
+            </div>
+            <div class="image" style="padding-right: 4%;">
+                <img src="images/image.png" alt="Digital Dashboard">
+            </div>
+        </section>
+        <section id="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>1. Register</h3>
+                    <p>Create an account as a student or an admin to start using ResultHub.</p>
+                </div>
+                <div class="step">
+                    <h3>2. Upload Results</h3>
+                    <p>Admins can upload results securely to the system for students to access.</p>
+                </div>
+                <div class="step">
+                    <h3>3. Analyze Performance</h3>
+                    <p>Use our tools to view detailed performance analytics and insights.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 ResultHub. All rights reserved.</p>
+        <ul>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+            <li><a href="#support">Support</a></li>
+        </ul>
+    </footer>
+</body>
+</html>

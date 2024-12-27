@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    h1, h2 {
+      text-align: center;
+      margin: 20px 0;
+      color: #444;
+    }
+
+    a {
+      text-decoration: none;
+      color: #0056b3;
+      transition: color 0.3s ease-in-out;
+    }
+
+    a:hover {
+      color: #ff6600;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 300px;
+      margin: 20px auto;
+    }
+
+    ul li {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      text-align: center;
+      padding: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    ul li:hover {
+      transform: translateY(-5px);
+    }
+
+    ul li a {
+      display: block;
+      font-weight: bold;
+      color: #0056b3;
+    }
+
+    ul li a:hover {
+      color: #ff6600;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px 20px  ;
+      font-size: 1rem;
+      position: fixed;
+      margin-top: auto;
+      width: 100%;
+  }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      ul {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Include Header -->
+  <%- include('partials/header')  %>
+
+  <h1>Welcome, <%= username %>!</h1>
+  <h2>Admin Dashboard</h2>
+  <ul>
+    <li><a href="/upload-results">Upload Results</a></li>
+    <li><a href="/view-students">View Students</a></li>
+
+    <% if (role === 'vice_admin') { %>
+      <li><a href="/view-requests">Manage Registration Requests</a></li>
+    <% } %>
+  </ul>
+
+  <!-- Include Footer -->
+  <%- include('partials/footer') %>
+</body>
+</html>

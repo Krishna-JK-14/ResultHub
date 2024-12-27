@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Results</title>
+    <style>/* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        
+        h1 {
+            font-size: 2rem;
+            color: #333;
+        }
+        
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            margin-top: 15px;
+        }
+        
+        input, select, button {
+            font-size: 1rem;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        
+        input:focus, select:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        button:active {
+            background-color: #3e8e41;
+        }
+        
+        button:focus {
+            outline: none;
+        }
+        
+        .container label[for="resultFile"] {
+            margin-top: 20px;
+        }
+        
+        /* Header and Footer Styling (if needed) */
+        header, footer {
+            background-color: #3333;
+            color: white;
+            padding: 10px 0px;
+            text-align: center;
+            font-size: 1rem;
+        }
+        
+        header a, footer a {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        </style>
+</head>
+<body>
+    <!-- Include Header -->
+    <%- include('partials/header')  %>
+  
+    <div class="container">
+        <h1 style="text-align : center; padding: 20px;">Upload Results</h1>
+        <form id="uploadResultsForm" action="/upload-results" method="POST" enctype="multipart/form-data">
+            <label for="school">Select School:</label>
+            <select name="school" id="school" required>
+                <% schools.forEach(function(school) { %>
+                    <option value="<%= school.id %>"><%= school.name %></option>
+                <% }); %>
+            </select>
+
+            <label for="class">Class Name:</label>
+            <input type="text" id="class" name="class" required placeholder="Enter Class Name">
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required placeholder="Enter Subject">
+
+            <label for="subject">Exam:</label>
+            <input type="text" id="exam" name="exam_number" required placeholder="Enter Exam number">
+
+            <label for="subject">Max marks</label>
+            <input type="text" id="total_marks" name="total_marks" required placeholder="Enter Max Marks">
+
+            <label for="resultFile">Upload Results (CSV/Excel):</label>
+            <input type="file" id="resultFile" name="resultFile" accept=".csv,.xlsx" required>
+
+            <button type="submit">Upload Results</button>
+        </form>
+    </div>
+
+    <!-- Include Footer from partials folder -->
+  <%- include('partials/footer') %>
+</body>
+</html>

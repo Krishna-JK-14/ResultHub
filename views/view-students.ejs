@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Students</title>
+  <style>/* General Styling */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    
+    h1, h2 {
+        text-align: center;
+        color: #444;
+        margin: 20px 0;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 100% ;
+        margin: auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Form Styling */
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px 0;
+    }
+    
+    label {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    
+    select {
+        font-size: 1rem;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        width: 80%;
+        max-width: 400px;
+        background-color: #fff;
+        appearance: none;
+        background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"%3E%3Cpath fill="%234CAF50" d="M2 0L0 2h4zM2 5L0 3h4z"/%3E%3C/svg%3E');
+        background-repeat: no-repeat;
+        background-position: right 10px center;
+        background-size: 12px;
+    }
+    
+    select:focus {
+        border-color: #4CAF50;
+        outline: none;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    }
+    
+    button {
+        font-size: 1rem;
+        padding: 10px 20px;
+        margin-top: 10px;
+        border: none;
+        border-radius: 8px;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+    
+    button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+    
+    button:hover:not(:disabled) {
+        background-color: #45a049;
+    }
+    
+    /* Student List Styling */
+    .student-list {
+        margin-top: 20px;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    
+    .student-list ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .student-list li {
+        margin: 10px 0;
+        font-size: 1.1rem;
+    }
+    
+    .student-list li a {
+        text-decoration: none;
+        color: #4CAF50;
+        font-weight: bold;
+    }
+    
+    .student-list li a:hover {
+        text-decoration: underline;
+        color: #45a049;
+    }
+    
+    .student-list p {
+        font-size: 1rem;
+        color: #555;
+    }
+    
+    /* Footer Styling */
+    footer {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        font-size: 1rem;
+        margin-top: auto;
+        width: 100%;
+    }
+    
+    footer a {
+        color: #4CAF50;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    
+    footer a:hover {
+        text-decoration: underline;
+    }
+    
+    /* Loading Spinner */
+    #loadingSpinner {
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #4CAF50;
+        margin-top: 20px;
+    }
+    
+    /* Center Content */
+    main {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    </style>
+</head>
+<body>
+  <!-- Include Header -->
+  <%- include('partials/header')  %>
+  
+  <h1>View Students</h1>
+  
+  <!-- Form to select a class -->
+  <form action="/view-students" method="get" id="classForm">
+    <label for="classSelect">Select Class:</label>
+    <select id="classSelect" name="className" required>
+      <option value="">Select Class</option>
+      <% classes.forEach(classItem => { %>
+        <option value="<%= classItem %>" <%= classItem === className ? 'selected' : '' %>><%= classItem %></option>
+      <% }); %>
+    </select>
+    <button type="submit" id="submitBtn" disabled>View Students</button>
+  </form>
+
+  <script>
+    // Enable the submit button only if a class is selected
+    document.getElementById('classSelect').addEventListener('change', function() {
+      document.getElementById('submitBtn').disabled = this.value === "";
+    });
+  </script>
+
+  <% if (className) { %>
+    <div class="student-list">
+      <h2>Students in <%= className %></h2>
+      <% if (students.length > 0) { %>
+        <ul>
+          <% students.forEach(student => { %>
+            <li>
+              <a href="/view-student/<%= student.id %>">
+                <%= student.username %> (Roll No: <%= student.roll_number %>)
+              </a>
+            </li>
+          <% }); %>
+        </ul>
+        <p>Total students: <%= students.length %></p>
+      <% } else { %>
+        <p>No students found in <%= className %>. Please check the class name or try a different class.</p>
+      <% } %>
+    </div>
+  <% } %>
+
+  <!-- Loading Spinner -->
+  <div id="loadingSpinner" style="display:none;">Loading...</div>
+
+  <!-- Include Footer from partials folder -->
+  <%- include('partials/footer') %>
+
+  <script>
+    // Optionally, add a loading spinner if required
+    // You can trigger this in the backend if there's any delay fetching students.
+    document.getElementById('classForm').addEventListener('submit', function() {
+      document.getElementById('loadingSpinner').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

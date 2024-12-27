@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Details</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    /* General Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  line-height: 1.5;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  color: #1e88e5;
+  margin-bottom: 20px;
+}
+
+p {
+  margin: 10px 0;
+  font-size: 1rem;
+}
+
+/* Header and Footer Styling */
+header, footer {
+  background-color: #3949ab;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+footer {
+  margin-top: auto;
+  font-size: 0.9rem;
+}
+
+/* Table Styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+  text-align: left;
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+th {
+  background-color: #3949ab;
+  color: white;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #e3f2fd;
+}
+
+/* Input Fields and Buttons */
+input[type="number"], input[type="text"], button {
+  font-size: 1rem;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: auto;
+  outline: none;
+  transition: border-color 0.2s, background-color 0.3s;
+}
+
+input:focus {
+  border-color: #1e88e5;
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out, transform 0.2s;
+}
+
+button:hover {
+  background-color: #388e3c;
+  transform: translateY(-3px);
+}
+
+/* Specific Page Styles */
+.editable {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+.input-row input {
+  width: 100px;
+}
+
+.save-btn {
+  margin-left: 10px;
+}
+
+.add-result-container {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e3f2fd;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.add-result-container input {
+  margin-right: 10px;
+}
+
+.add-result-container button {
+  margin-top: 10px;
+}
+
+/* Links */
+a {
+  color: #1e88e5;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  table {
+      font-size: 0.9rem;
+  }
+
+  input, button {
+      font-size: 0.8rem;
+  }
+
+  .add-result-container {
+      padding: 10px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <!-- Include Header -->
+  <%- include('partials/header')  %>
+  
+  <h1>Student Details: </h1>
+  <h4 style="font-size: large;">Name: <%= student.username %></h4>
+  <p>Email: <%= student.email %></p>
+  <p>Class: <%= student.class %></p>
+  <p>Roll Number: <%= student.roll_number %></p>
+
+  <h2>Exam Results</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Exam Number</th>
+        <th>Subject</th>
+        <th>Marks</th>
+        <th>Total Marks</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% results.forEach(result => { %>
+        <tr>
+          <td><%= result.exam_number %></td>
+          <td><%= result.subject %></td>
+          <td>
+            <input type="number" id="marks-<%= result.exam_number %>-<%= result.subject %>" 
+                   value="<%= result.marks %>" />
+          </td>
+          <td><%= result.total_marks %></td>
+          <td>
+            <button class="save-btn" onclick="updateMarks('<%= student.id %>', '<%= result.exam_number %>', '<%= result.subject %>')">Save</button>
+          </td>
+        </tr>
+      <% }); %>
+
+      
+    </tbody>
+  </table>
+
+  <div class="add-result-container">
+    <h3>Add New Result</h3>
+    <form id="addResultForm">
+      <input type="hidden" id="studentId" value="<%= student.id %>">
+      <label for="examNumber">Exam Number:</label>
+      <input type="number" id="examNumber" required>
+      <label for="subject">Subject:</label>
+      <input type="text" id="subject" required>
+      <label for="marks">Marks:</label>
+      <input type="number" id="marks" required>
+      <label for="total">Total Marks:</label>
+      <input type="number" id="total" required>
+      <button type="button" onclick="addResult()">Add Result</button>
+    </form>
+  </div>
+
+  <a href="/view-students?className=<%= student.class %>">Back to Students</a>
+
+  <script>
+    async function updateMarks(studentId, examNumber, subject) {
+      const marksInputId = `marks-${examNumber}-${subject}`;
+      const newMarks = document.getElementById(marksInputId).value;
+
+      try {
+        const response = await fetch('/update-marks', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            studentId,
+            examNumber,
+            subject,
+            marks: newMarks,
+          }),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          alert('Marks updated successfully');
+          location.reload(); // Reload to reflect changes
+        } else {
+          alert('Error updating marks');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Error updating marks');
+      }
+    }
+
+    async function addResult() {
+      const studentId = document.getElementById('studentId').value;
+      const examNumber = document.getElementById('examNumber').value;
+      const subject = document.getElementById('subject').value;
+      const marks = document.getElementById('marks').value;
+      const total = document.getElementById('total').value;
+
+      try {
+        const response = await fetch('/add-result', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            studentId,
+            examNumber,
+            subject,
+            marks,
+            total,
+          }),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          alert('Result added successfully');
+          location.reload(); // Reload to reflect changes
+        } else {
+          alert('Error adding result');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Error adding result');
+      }
+    }
+  </script>
+  <!-- Include Footer from partials folder -->
+  <%- include('partials/footer') %>
+</body>
+</html>

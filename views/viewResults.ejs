@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Results</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>/* Results Page Specific Styles */
+
+    /* Table Styles */
+    table {
+      width: 100%;
+      max-width: 800px;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    table th,
+    table td {
+      padding: 12px 15px;
+      text-align: center;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+    
+    table th {
+      background-color: #007bff;
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    
+    table tbody tr:nth-child(odd) {
+      background-color: #f9f9f9;
+    }
+    
+    table tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+    
+    table tfoot td {
+      font-weight: bold;
+      background-color: #f7f7f7;
+    }
+    
+    /* Percentage and Status */
+    .pass {
+      color: green;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    .fail {
+      color: red;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    
+    /* Buttons */
+    button {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+      background-color: #0056b3;
+    }
+    
+    button:active {
+      transform: scale(0.98);
+    }
+    
+    /* Print Button */
+    button[onclick="window.print()"] {
+      background-color: #28a745;
+    }
+    
+    button[onclick="window.print()"]:hover {
+      background-color: #218838;
+    }
+    
+    /* No Results Message */
+    h2 {
+      font-size: 22px;
+      color: #555;
+      margin-top: 20px;
+    }
+    
+    /* Layout Adjustments */
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+    }
+    
+    /* Center and Style the Result Box */
+#boxx {
+  width: 80%;
+  max-width: 800px;
+  margin: 50px auto; /* Centers the box horizontally and adds vertical spacing */
+  background-color: #eaf7ff; /* Light blue background */
+  padding: 20px; /* Adds padding inside the box */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  border: 1px solid #cfe3f3; /* Light border for a clean look */
+}
+
+/* Typography for h2 and p */
+#boxx h2 {
+  margin-bottom: 10px; /* Adds spacing below headings */
+  font-size: 24px; /* Larger font size for headings */
+  font-weight: bold;
+  color: #007bff; /* Professional blue color */
+  text-align: center;
+}
+
+#boxx p {
+  margin: 8px 0; /* Adds spacing between paragraphs */
+  font-size: 18px; /* Readable font size for text */
+  color: #333; /* Darker color for contrast */
+  text-align: left; /* Align text to the left */
+}
+
+/* Table Styling */
+#boxx table {
+  width: 100%; /* Full width table */
+  margin-top: 20px; /* Spacing above the table */
+  border-collapse: collapse; /* Removes gaps between cells */
+  background-color: #ffffff; /* White background for contrast */
+}
+
+#boxx th,
+#boxx td {
+  padding: 10px;
+  border: 1px solid #ddd; /* Subtle border between cells */
+  text-align: center; /* Center-align content in cells */
+  font-size: 16px;
+}
+
+#boxx th {
+  background-color: #007bff; /* Blue background for headers */
+  color: #ffffff; /* White text for contrast */
+  font-weight: bold;
+}
+
+#boxx tr:nth-child(odd) {
+  background-color: #f9f9f9; /* Alternate row color for readability */
+}
+
+#boxx tr:nth-child(even):hover {
+  background-color: #f1f1f1; /* Highlight hovered rows */
+}
+
+/* Buttons */
+#boxx button {
+  display: block;
+  margin: 20px auto; /* Centers the button */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#boxx button:hover {
+  background-color: #0056b3;
+}
+
+#boxx button:active {
+  transform: scale(0.98);
+}
+
+/* Pass/Fail Styling */
+.pass {
+  color: green;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+.fail {
+  color: red;
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 10px;
+  text-align: left;
+}
+
+
+    p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    
+    p strong {
+      font-size: 20px;
+    }
+    
+    form {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      table th,
+      table td {
+        font-size: 14px;
+        padding: 8px 10px;
+      }
+    
+      button {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+    
+      h1,
+      h2,
+      p {
+        font-size: 18px;
+      }
+    }
+    /* Print styles */
+@media print {
+  body * {
+    visibility: hidden; /* Hide everything by default */
+  }
+  #boxx, #boxx * {
+    visibility: visible; /* Make #boxx and its content visible */
+  }
+  #boxx {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    background-color: white; /* Ensure a white background for the print */
+  }
+}
+
+    </style>
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <h1>Results Page</h1>
+  <form method="get" action="/view-results">
+    <label for="examNumber">Exam Number:</label>
+    <input type="text" id="examNumber" name="examNumber" required>
+    <button type="submit">View Results</button>
+  </form>
+  <div id="boxx">
+    
+  <% if (results && results.length > 0) { %>
+    <h2>Student Details</h2>
+    <p>Name: <%= student.username %></p>
+    <p>Roll Number: <%= student.roll_number %></p>
+    <p>Class: <%= student.class %></p>
+    <p>Exam Number: <%= examNumber %></p>
+    <p>School: <%= schoolname%></p>
+
+    <h2>Results</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Marks</th>
+          <th>Total Marks</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let totalMarks = 0, totalMaxMarks = 0; %>
+        <% results.forEach(result => { %>
+          <tr>
+            <td><%= result.subject %></td>
+            <td><%= result.marks %></td>
+            <td><%= result.total_marks %></td>
+          </tr>
+          <% totalMarks += Number(result.marks); %>
+          <% totalMaxMarks += Number(result.total_marks); %>
+        <% }); %>
+        <tr>
+          <td><strong>Total</strong></td>
+          <td><strong><%= totalMarks %></strong></td>
+          <td><strong><%= totalMaxMarks %></strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <% let percentage = (totalMarks / totalMaxMarks) * 100; %>
+    <p>Percentage: <%= percentage.toFixed(2) %>%</p>
+    <p class="<%= percentage >= 40 ? 'pass' : 'fail' %>">
+      <%= percentage >= 40 ? 'Pass' : 'Fail' %>
+    </p>
+    <button onclick="window.print()">Print Results</button>
+  <% } else { %>
+    <h2>No results found for Exam Number <%= examNumber %></h2>
+  <% } %>
+  
+</div>
+
+  <!-- <button onclick="history.back()">Back</button> -->
+  <%- include('partials/footer') %>
+</body>
+</html>

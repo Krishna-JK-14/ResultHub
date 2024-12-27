@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/styles.css"> 
+  <style>
+    /* Login and Register Pages */
+    .login-register-page {
+        max-width: 400px;
+        margin: 100px auto; /* Move the form down */
+        margin-top: 10px;
+        text-align: center;
+    }
+    
+    .login-register-page h2 {
+        margin-bottom: 20px;
+        color: #333;
+    }
+    
+    .login-register-page p {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+    
+    .login-register-page a {
+        color: #007bff;
+        font-weight: bold;
+    }
+    
+    /* Center heading and move it down */
+    h1 {
+        text-align: center;
+        margin-top: 50px; /* Move the heading down */
+    }
+    
+    /* Center the "Don't have an account" text */
+    .register-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    form {
+        text-align: center; /* Center the form */
+    }
+
+    button {
+        margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Login</h1>
+  <div class="login-register-page">
+    <form action="/login" method="POST">
+      <label for="email">Email:</label>
+      <input type="email" name="email" required><br>
+      <label for="password">Password:</label>
+      <input type="password" name="password" required><br>
+      <label for="role">Role:</label>
+      <select name="role" id="role" required>
+        <option value="super_admin">Super Admin</option>
+        <option value="admin">Admin</option>
+        <option value="student">Student</option>
+      </select><br>
+      <button type="submit">Login</button>
+    </form>
+    <p class="register-link">Don't have an account? <a href="/register">Register here</a></p> <!-- Link to the register page -->
+  </div>
+</body>
+</html>
