@@ -124,7 +124,11 @@ Here are some potential future enhancements for **ResultHub** to improve its fun
    - Allow schools or colleges to customize the portal's appearance with their logos, colors, and themes.
 
 
-
+## Link to application
+- https://resulthub.onrender.com/
+- demo account details for superadmin(school admin) : email : nbchs@gmail.com ; password : 12345
+- demo account details for admin : email : akhil@gmail.com ; password: 12345
+- demo account details for student: email: krishna@gmail.com ; password : 12345
 
 ## Installation
 
