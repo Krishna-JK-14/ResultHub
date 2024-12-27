@@ -4,191 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="/css/styles.css"/>
     <style>
-    /* Container for the entire page */
-    .register-page {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        padding: 0 20px;
-        box-sizing: border-box;
-    }
-
-    /* Registration box styling */
-    .register-box {
-        width: 100%;
-        max-width: 600px; /* Increased width */
-        background-color: #fff;
-        padding: 30px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        text-align: center;
-    }
-
-    .register-box h1 {
-        margin-bottom: 20px;
-        font-size: 28px;
-        color: #007bff;
-    }
-
-    .register-box h3 {
-        font-size: 18px;
-        margin-bottom: 20px;
-        color: #333;
-    }
-
-    /* Form selection for registration type (School, Admin, Student) */
-    .form-selection {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 20px;
-        gap: 10px;
-        text-align: center;
-    }
-
-    .form-selection button {
-        width: 30%;
-        padding: 10px 12px;
-        font-size: 14px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .form-selection button:hover {
-        background-color: #0056b3;
-    }
-
-    /* Hide the forms initially */
-    .form-container {
-        display: none;
-        margin-top: 20px;
-        text-align: left; /* Align form details to the left */
-    }
-
-    .form-container h2 {
-        margin-bottom: 15px;
-        font-size: 22px;
-        color: #333;
-    }
-
-    /* Input fields and labels aligned beside each other */
-    .form-container label {
-        font-size: 14px;
-        margin-bottom: 8px;
-        display: inline-block;
-        width: 30%; /* Labels aligned beside input fields */
-        text-align: right;
-        padding-right: 10px;
-    }
-
-    .form-container input,
-    .form-container select {
-        width: 65%; /* Input fields width adjusted to fit */
-        padding: 10px;
-        margin-bottom: 15px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 14px;
-    }
-
-    .form-container button {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-        background-color: #28a745;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    .form-container button:hover {
-        background-color: #218838;
-    }
-
-    .form-container input:focus,
-    .form-container select:focus {
-        border-color: #007bff;
-        outline: none;
-    }
-
-    /* Login Link below the form */
-    .login-link {
-        margin-top: 20px;
-        font-size: 14px;
-    }
-
-    .login-link a {
-        color: #007bff;
-        font-weight: bold;
-    }
-
-    .login-link a:hover {
-        text-decoration: underline;
-    }
-
-    /* Responsive Design for small screens */
-    @media (max-width: 600px) {
-        .register-page {
-            height: auto;
-            padding: 10px;
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .register-box {
-            max-width: 100%;
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .register-page {
+            width: 100%;
             padding: 20px;
         }
 
+        .register-box {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
         .register-box h1 {
-            font-size: 24px;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #0056b3;
+        }
+
+        .form-selection {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
         }
 
         .form-selection button {
-            width: 30%;
-            padding: 8px 10px;
-            font-size: 12px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        .form-container input,
-        .form-container select {
-            font-size: 12px;
-            padding: 8px;
+        .form-selection button:hover {
+            background-color: #0056b3;
         }
 
-        .form-container button {
-            padding: 10px;
-            font-size: 14px;
+        .form-container {
+            display: none;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .form-container h2 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #333;
         }
 
         .form-container label {
-            width: 100%;
-            text-align: left;
+            font-size: 0.9rem;
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
         }
 
         .form-container input,
         .form-container select {
             width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
         }
-    }
-</style>
 
-    
-    
-    
-    
+        .form-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background-color: #218838;
+        }
+
+        .form-container input:focus,
+        .form-container select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .login-link {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+
+        .login-link a {
+            color: #007bff;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .register-box {
+                padding: 20px;
+            }
+
+            .register-box h1 {
+                font-size: 1.5rem;
+            }
+
+            .form-selection button {
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
+
+            .form-container label,
+            .form-container input,
+            .form-container select,
+            .form-container button {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="register-page">
         <div class="register-box">
             <h1>Register</h1>
             <div class="form-selection">
-                <h4>Select the type of registration:</h4>
                 <button onclick="showForm('school')">Register School</button>
                 <button onclick="showForm('admin')">Register Admin</button>
                 <button onclick="showForm('student')">Register Student</button>
@@ -199,15 +170,15 @@
                 <h2>School Registration</h2>
                 <form action="/register-school" method="POST">
                     <label for="name">School Name</label>
-                    <input type="text" name="name" required><br>
+                    <input type="text" name="name" required>
                     <label for="email">School Email</label>
-                    <input type="email" name="email" required><br>
+                    <input type="email" name="email" required>
                     <label for="password">Super Admin Password</label>
-                    <input type="password" name="password" required><br>
-                    <label for="number">Mobile number</label>
-                    <input type="text" name="number" required><br>
+                    <input type="password" name="password" required>
+                    <label for="number">Mobile Number</label>
+                    <input type="text" name="number" required>
                     <label for="address">Address</label>
-                    <input type="text" name="address" required><br>
+                    <input type="text" name="address" required>
                     <button type="submit">Register School</button>
                 </form>
             </div>
@@ -221,13 +192,13 @@
                         <% schools.forEach(function(school) { %>
                             <option value="<%= school.id %>"><%= school.name %></option>
                         <% }); %>
-                    </select><br>
+                    </select>
                     <label for="username">Username</label>
-                    <input type="text" name="username" required><br>
+                    <input type="text" name="username" required>
                     <label for="password">Password</label>
-                    <input type="password" name="password" required><br>
+                    <input type="password" name="password" required>
                     <label for="email">Email</label>
-                    <input type="email" name="email" required><br>
+                    <input type="email" name="email" required>
                     <button type="submit">Register Admin</button>
                 </form>
             </div>
@@ -241,17 +212,17 @@
                         <% schools.forEach(function(school) { %>
                             <option value="<%= school.id %>"><%= school.name %></option>
                         <% }); %>
-                    </select><br>
+                    </select>
                     <label for="class_name">Class</label>
-                    <input type="text" name="class_name" required><br>
+                    <input type="text" name="class_name" required>
                     <label for="username">Username</label>
-                    <input type="text" name="username" required><br>
+                    <input type="text" name="username" required>
                     <label for="password">Password</label>
-                    <input type="password" name="password" required><br>
+                    <input type="password" name="password" required>
                     <label for="email">Email</label>
-                    <input type="email" name="email" required><br>
+                    <input type="email" name="email" required>
                     <label for="roll_number">Roll Number</label>
-                    <input type="text" name="roll_number" required><br>
+                    <input type="text" name="roll_number" required>
                     <button type="submit">Register Student</button>
                 </form>
             </div>
@@ -264,17 +235,10 @@
     </div>
 
     <script>
-        // Function to show the selected form
         function showForm(type) {
-            // Hide all forms initially
-            document.querySelectorAll('.form-container').forEach(form => {
-                form.style.display = 'none';
-            });
-
-            // Show the selected form
+            document.querySelectorAll('.form-container').forEach(form => form.style.display = 'none');
             document.getElementById(type + '-form').style.display = 'block';
         }
     </script>
 </body>
-
 </html>
