@@ -104,6 +104,27 @@ Once logged in as a student, you will be directed to the Student Dashboard where
 ![Screenshot 2024-12-27 174845](https://github.com/user-attachments/assets/e3bc870e-60ef-4f46-9cb1-7c001cc8e29c)
 ![Screenshot 2024-12-27 174903](https://github.com/user-attachments/assets/cee74ee0-329c-4b80-a730-821e70b7581b)
 
+## Future Enhancements
+
+Here are some potential future enhancements for **ResultHub** to improve its functionality and user experience:
+
+1. **Enhanced Analytics Dashboard**
+   - Add detailed analytics for students and admins, such as grade trends, performance comparisons, and subject-wise insights.
+
+2. **Multi-School/College Support**
+   - Expand the application to support multiple schools or colleges with unique domains and branding for each institution.
+
+3. **Notification System**
+   - Add an email or SMS notification system to alert students and admins about result updates, announcements, and deadlines.
+
+4. **Role-Based Access Control**
+   - Implement more granular permissions, such as creating roles for department heads or subject teachers, each with specific access rights.
+
+5. **Customizable Themes**
+   - Allow schools or colleges to customize the portal's appearance with their logos, colors, and themes.
+
+
+
 
 ## Installation
 
