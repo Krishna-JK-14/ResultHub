@@ -64,11 +64,45 @@ Once logged in as a student, you will be directed to the Student Dashboard where
 - **Admin**: Full access to all student data, account management, and result uploads.
 - **Student**: Restricted to viewing only their own results, with no permission to modify any data.
 
-##Screenshots
--Home Page
+## Screenshots
+- **Home Page**
 ![Screenshot 2024-12-27 173906](https://github.com/user-attachments/assets/9d09ca29-586a-4a8d-b6e8-b653c59776dd)
 ![Screenshot 2024-12-27 173949](https://github.com/user-attachments/assets/2b1a08c0-1dfd-4ad9-8e3f-693935000b65)
 
+- **Register**
+![Screenshot 2024-12-27 174022](https://github.com/user-attachments/assets/7753aa84-49b2-47c0-9316-7a36bd12ac01)
+
+- **Login**
+![Screenshot 2024-12-27 174005](https://github.com/user-attachments/assets/219316fa-3797-48a7-80f5-462063fc752f)
+
+- **Dashboard**
+![Screenshot 2024-12-27 174050](https://github.com/user-attachments/assets/942c1159-a2b7-4ebf-81f9-c2454fab9a84)
+![Screenshot 2024-12-27 174213](https://github.com/user-attachments/assets/ee26c730-4060-445a-abb6-b3cbc5b65d18)
+![Screenshot 2024-12-27 174447](https://github.com/user-attachments/assets/c0e1e6f3-5f2c-4cb1-9013-e9b251a41461)
+
+- **Requests**
+![Screenshot 2024-12-27 174112](https://github.com/user-attachments/assets/a5719515-9968-44ba-81eb-c9358e6272f4)
+
+- **User management**
+![Screenshot 2024-12-27 174136](https://github.com/user-attachments/assets/ccf001c2-605a-4fc9-a027-f0b2bfae7648)
+![Screenshot 2024-12-27 174150](https://github.com/user-attachments/assets/5184e988-1164-4a26-88eb-f346ac1d4af5)
+
+- **Upload results**
+![Screenshot 2024-12-27 174308](https://github.com/user-attachments/assets/ec15c98a-bb97-4d73-bb9c-bb43bb36dd86)
+![Screenshot 2024-12-27 174322](https://github.com/user-attachments/assets/5c8a3b2c-d9f0-45d8-a1e2-dbc4b59675c8)
+
+- **View Students**
+![Screenshot 2024-12-27 174343](https://github.com/user-attachments/assets/867bbbaa-d459-4628-83e1-bd8d86b242e0)
+![Screenshot 2024-12-27 174404](https://github.com/user-attachments/assets/55913bdb-bea0-4783-b854-3bf0ec3f160b)
+![Screenshot 2024-12-27 174415](https://github.com/user-attachments/assets/5e271972-0f4d-495e-a991-a16ec6b79136)
+
+- **View Results**
+![Screenshot 2024-12-27 174514](https://github.com/user-attachments/assets/0d33bdff-e9cf-41b5-a1be-b9430495e4fe)
+![Screenshot 2024-12-27 174533](https://github.com/user-attachments/assets/7346edfb-f16b-459d-98ed-a485d455d00f)
+
+- **Profile**
+![Screenshot 2024-12-27 174845](https://github.com/user-attachments/assets/e3bc870e-60ef-4f46-9cb1-7c001cc8e29c)
+![Screenshot 2024-12-27 174903](https://github.com/user-attachments/assets/cee74ee0-329c-4b80-a730-821e70b7581b)
 
 
 ## Installation
