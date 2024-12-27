@@ -15,8 +15,11 @@
     body { 
       font-family: 'Arial', sans-serif;
       line-height: 1.6;
-      background-color: #f3f4f6;
-      color: #333;
+      background-color: #eef1f7;
+      color: #2c3e50;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     h1, h2 {
@@ -40,30 +43,30 @@
       padding: 0;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      max-width: 300px;
-      margin: 20px auto;
+      gap: 15px;
+      max-width: 400px;
+      margin: 30px auto;
     }
 
     ul li {
       background: #fff;
       border: 1px solid #ddd;
-      border-radius: 5px;
+      border-radius: 8px;
       text-align: center;
-      padding: 10px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     }
 
     ul li:hover {
       transform: translateY(-5px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
 
     ul li a {
-      display: block;
       font-weight: bold;
       color: #3949ab;
+      font-size: 1rem;
     }
 
     ul li a:hover {
@@ -72,38 +75,59 @@
 
     /* Footer */
     footer {
-      background: #283593;
-      color: #fff;
-      padding: 10px 20px;
+      background-color: #283593;
+      color: white;
       text-align: center;
-      position: fixed;
-      bottom: 0;
+      padding: 15px;
+      font-size: 0.9rem;
+      margin-top: auto;
       width: 100%;
+    }
+
+    footer a {
+      color: #f39c12;
+      text-decoration: underline;
+    }
+
+    footer a:hover {
+      color: #e67e22;
     }
 
     /* Responsive Design */
     @media (max-width: 768px) {
       ul {
-        flex-direction: column;
-        gap: 15px;
+        max-width: 90%;
+        gap: 10px;
+      }
+
+      ul li {
+        padding: 10px;
+      }
+
+      ul li a {
+        font-size: 0.9rem;
       }
     }
   </style>
 </head>
 <body>
   <!-- Include Header -->
-  <%- include('partials/header')  %>
-  <h1>Welcome!</h1>
+  <%- include('partials/header') %>
+
+  <h1>Welcome, <%= schoolname.name %>!</h1>
   <h2>Super Admin Dashboard</h2>
+  
+  <!-- Dashboard Links -->
   <ul>
     <li><a href="/view-requests">View Registration Requests</a></li>
     <li><a href="/super-admin">Manage Users</a></li>
   </ul>
 
-  <!-- Include Footer -->
   <%- include('partials/footer') %>
+  <!-- Example JavaScript -->
   <script>
-    alert(schoolname);
+    // Display school name in an alert for testing purposes
+    alert("Welcome to " + "<%= schoolname.name %>!");
   </script>
 </body>
 </html>
