@@ -64,6 +64,12 @@ Once logged in as a student, you will be directed to the Student Dashboard where
 - **Admin**: Full access to all student data, account management, and result uploads.
 - **Student**: Restricted to viewing only their own results, with no permission to modify any data.
 
+##Screenshots
+-Home Page
+![Screenshot 2024-12-27 173906](https://github.com/user-attachments/assets/9d09ca29-586a-4a8d-b6e8-b653c59776dd)
+![Screenshot 2024-12-27 173949](https://github.com/user-attachments/assets/2b1a08c0-1dfd-4ad9-8e3f-693935000b65)
+
+
 
 ## Installation
 
@@ -72,3 +78,6 @@ Follow these steps to get the project running locally:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/Krishna-JK-14/ResultHub.git
+
+
+   
