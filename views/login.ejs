@@ -4,49 +4,120 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <link rel="stylesheet" href="css/styles.css"> 
   <style>
-    /* Login and Register Pages */
-    .login-register-page {
-        max-width: 400px;
-        margin: 100px auto; /* Move the form down */
-        margin-top: 10px;
-        text-align: center;
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    
-    .login-register-page h2 {
-        margin-bottom: 20px;
-        color: #333;
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
-    
-    .login-register-page p {
-        font-size: 14px;
-        margin-top: 10px;
-    }
-    
-    .login-register-page a {
-        color: #007bff;
-        font-weight: bold;
-    }
-    
-    /* Center heading and move it down */
+
     h1 {
-        text-align: center;
-        margin-top: 50px; /* Move the heading down */
-    }
-    
-    /* Center the "Don't have an account" text */
-    .register-link {
-        text-align: center;
-        margin-top: 20px;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #0056b3;
     }
 
-    form {
-        text-align: center; /* Center the form */
+    .login-register-page {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
     }
 
-    button {
-        margin-top: 10px;
+    .login-register-page h2 {
+      margin-bottom: 20px;
+      color: #444;
+      font-size: 1.5rem;
+    }
+
+    .login-register-page label {
+      font-weight: bold;
+      color: #555;
+      display: block;
+      margin: 10px 0 5px;
+      text-align: left;
+    }
+
+    .login-register-page input,
+    .login-register-page select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .login-register-page button {
+      background: #007bff;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+
+    .login-register-page button:hover {
+      background: #0056b3;
+    }
+
+    .login-register-page p {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 15px;
+    }
+
+    .login-register-page a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .login-register-page a:hover {
+      color: #ff6600;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .login-register-page {
+        padding: 20px;
+      }
+
+      .login-register-page button {
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .login-register-page {
+        padding: 15px;
+      }
     }
   </style>
 </head>
@@ -55,18 +126,21 @@
   <div class="login-register-page">
     <form action="/login" method="POST">
       <label for="email">Email:</label>
-      <input type="email" name="email" required><br>
+      <input type="email" name="email" id="email" required>
+
       <label for="password">Password:</label>
-      <input type="password" name="password" required><br>
+      <input type="password" name="password" id="password" required>
+
       <label for="role">Role:</label>
       <select name="role" id="role" required>
         <option value="super_admin">Super Admin</option>
         <option value="admin">Admin</option>
         <option value="student">Student</option>
-      </select><br>
+      </select>
+
       <button type="submit">Login</button>
     </form>
-    <p class="register-link">Don't have an account? <a href="/register">Register here</a></p> <!-- Link to the register page -->
+    <p>Don't have an account? <a href="/register">Register here</a></p>
   </div>
 </body>
 </html>
