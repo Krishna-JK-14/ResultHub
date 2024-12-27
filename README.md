@@ -137,6 +137,6 @@ Follow these steps to get the project running locally:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/Krishna-JK-14/ResultHub.git
-
+- Contributions are welcome! Please fork this repository and submit a pull request with your changes.
 
    
