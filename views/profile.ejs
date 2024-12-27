@@ -5,167 +5,188 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Profile</title>
   <link rel="stylesheet" href="/css/styles.css">
-  <style>/* General Page Styles */
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f9; /* Light background for better readability */
-  color: #333; /* Dark text for good contrast */
-  line-height: 1.6;
-}
+  <style>
+    /* General Page Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f9; /* Light background for better readability */
+      color: #333; /* Dark text for good contrast */
+      line-height: 1.6;
+    }
 
-.container {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background: #eaf7ff; /* White background for content area */
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
-}
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: #eaf7ff; /* White background for content area */
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for elevation */
+    }
 
-/* Header and Footer (Assuming these are already styled globally) */
-header, footer {
-  background: #0078d4; /* Consistent brand color */
-  color: #ffffff;
-  text-align: center;
-  padding: 10px 0;
-}
+    /* Header and Footer */
+    header, footer {
+      background: #0078d4; /* Consistent brand color */
+      color: #ffffff;
+      text-align: center;
+      padding: 10px 0;
+    }
 
-/* Page Heading */
-h1 {
-  color: #0078d4; /* Match brand color */
-  font-size: 1.8rem;
-  text-align: center;
-  margin-bottom: 20px;
-}
+    /* Page Heading */
+    h1 {
+      color: #0078d4; /* Match brand color */
+      font-size: 1.8rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-/* Profile Info Section */
-.profile-info {
-  border: 1px solid #ccc;
-  padding: 15px;
-  border-radius: 8px;
-  background: #f9f9f9; /* Light gray for better separation */
-}
+    /* Profile Info Section */
+    .profile-info {
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 8px;
+      background: #f9f9f9; /* Light gray for better separation */
+    }
 
-.info-row {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
-}
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
 
-.info-row:last-child {
-  border-bottom: none;
-}
+    .info-row:last-child {
+      border-bottom: none;
+    }
 
-.info-label {
-  font-weight: bold;
-  color: #555;
-}
+    .info-label {
+      font-weight: bold;
+      color: #555;
+      flex: 1;
+    }
 
-.info-value {
-  color: #0078d4;
-  font-weight: 500;
-}
+    .info-value {
+      color: #0078d4;
+      font-weight: 500;
+      flex: 2;
+    }
 
-/* Buttons */
-button {
-  display: inline-block;
-  padding: 10px 20px;
-  margin-top: 15px;
-  font-size: 1rem;
-  color: #fff;
-  background: #0078d4;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+    /* Buttons */
+    button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin-top: 15px;
+      font-size: 1rem;
+      color: #fff;
+      background: #0078d4;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%; /* Default for mobile */
+    }
 
-button:hover {
-  background: #005bb5; /* Slightly darker on hover */
-}
+    button:hover {
+      background: #005bb5; /* Slightly darker on hover */
+    }
 
-.edit-btn {
-  background: #f39c12; /* Orange for edit action */
-}
+    .edit-btn {
+      background: #f39c12; /* Orange for edit action */
+    }
 
-.edit-btn:hover {
-  background: #e67e22; /* Darker orange */
-}
+    .edit-btn:hover {
+      background: #e67e22; /* Darker orange */
+    }
 
-.save-btn {
-  background: #27ae60; /* Green for save action */
-}
+    .save-btn {
+      background: #27ae60; /* Green for save action */
+    }
 
-.save-btn:hover {
-  background: #2ecc71; /* Brighter green */
-}
+    .save-btn:hover {
+      background: #2ecc71; /* Brighter green */
+    }
 
-.reset-btn {
-  background: #e74c3c; /* Red for reset password */
-}
+    .reset-btn {
+      background: #e74c3c; /* Red for reset password */
+    }
 
-.reset-btn:hover {
-  background: #c0392b; /* Darker red */
-}
+    .reset-btn:hover {
+      background: #c0392b; /* Darker red */
+    }
 
-/* Reset Password Section */
-.reset-password {
-  margin-top: 30px;
-  padding: 15px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background: #fcfcfc; /* Subtle background difference */
-}
+    /* Reset Password Section */
+    .reset-password {
+      margin-top: 30px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fcfcfc; /* Subtle background difference */
+    }
 
-.reset-password h3 {
-  font-size: 1.2rem;
-  color: #333;
-  margin-bottom: 15px;
-}
+    .reset-password h3 {
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 15px;
+    }
 
-.reset-password label {
-  display: block;
-  margin: 5px 0;
-  font-weight: bold;
-  color: #555;
-}
+    .reset-password label {
+      display: block;
+      margin: 5px 0;
+      font-weight: bold;
+      color: #555;
+    }
 
-.reset-password input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-}
+    .reset-password input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
 
-/* Responsive Design */
-@media screen and (max-width: 600px) {
-  .info-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    /* Responsive Design */
+    @media screen and (max-width: 768px) {
+      .container {
+        padding: 15px;
+      }
 
-  .info-label, .info-value {
-    width: 100%;
-  }
+      h1 {
+        font-size: 1.5rem;
+      }
 
-  button {
-    width: 100%;
-    margin-top: 10px;
-  }
-}
-</style>
-  
+      .info-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .info-label, .info-value {
+        width: 100%;
+      }
+
+      button {
+        margin-top: 10px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      h1 {
+        font-size: 1.2rem;
+      }
+
+      button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Include Header -->
-    <%- include('partials/header')  %>
-  
+  <!-- Include Header -->
+  <%- include('partials/header') %>
+
   <div class="container">
     <h1>Student Profile</h1>
     <div class="profile-info" id="profileInfo">
@@ -242,7 +263,7 @@ button:hover {
         }
       } catch (err) {
         console.error(err);
-        alert('Error updating profileee!');
+        alert('Error updating profile!');
       }
     }
 
